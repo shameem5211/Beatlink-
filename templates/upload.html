@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Image Upload</title>
+    <link rel="stylesheet" href="{% static 'style/upload.css' %}">
+</head>
+
+<body>
+    <a href="{% url 'index' %}" ><button class="home"><span><i class="uil uil-home"></i>Home</button></a>
+
+    <div class="container">
+        <h1>Upload</h1>
+        <form id="upload-form" action="upload" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="upload-area">
+                <input type="file" id="file-input" name="image" accept="image/*" />
+                <label class="choose" for="file-input">Choose Image</label>
+            </div><br>
+            <div class="preview-area">
+                <img id="preview-image" src="#" alt="Preview" />
+            </div>
+            <div class="caption-area">
+                <textarea name="caption" id="about" placeholder="Enter Your Caption here"  rows="5"></textarea>
+            </div><br>
+            <a href="{% url 'index' %}"><button type="submit">Upload</button></a>
+        </form>
+    </div>
+
+    <script >
+        document.addEventListener("DOMContentLoaded", function () {
+            const fileInput = document.getElementById("file-input");
+            const previewImage = document.getElementById("preview-image");
+        
+            fileInput.addEventListener("change", function () {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+        
+                reader.onloadend = function () {
+                    previewImage.src = reader.result;
+                    previewImage.style.display = "block";
+                };
+        
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImage.src = "";
+                    previewImage.style.display = "none";
+                }
+            });
+        });
+        
+    </script>
+
+    <script>
+            //Script for breaking lines in Textarea
+        
+     // JavaScript code to handle the textarea content
+     const myTextarea = document.getElementById('about');
+
+     // Event listener to handle user input (e.g., Enter key)
+     myTextarea.addEventListener('input', () => {
+         formatTextareaContent();
+     });
+
+     function formatTextareaContent() {
+         const text = myTextarea.value;
+         const formattedText = text.replace(/\n/g, '<br>');
+         myTextarea.innerHTML = formattedText;
+     }
+    </script>
+</body>
+</html>

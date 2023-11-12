@@ -1,0 +1,82 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block home_active %}{% endblock %}
+
+{% block saved_active %}
+    active
+{% endblock %}
+
+{% block content %}
+<!-- saved_posts.html -->
+
+{% for saved_post in saved_posts %}
+<div class="feeds">
+  <div class="feed">
+    <div class="head">
+    </div>
+    <div class="user">
+      <div class="profile-pic" id="set">
+        <a href="/profile/{{post.user}}">
+          <img id="prof" src="{% static 'images/BLlogo.png'  %}" alt="">
+        </a>
+      </div>
+      <a href="/profile/{{ saved_post.original_post.user }}" class="dev">
+        <div class="info">
+          <h3>{{ saved_post.original_post.user }}</h3>
+          <small>{{ saved_post.original_post.created_at }}</small>
+        </div>
+      </a>
+      <span class="edit"><i class="uil uil-ellipsis-h"></i></span>
+    </div>
+
+    <div class="photo">
+      <a href="{{ saved_post.original_post.image.url }}">
+        <img src="{{ saved_post.original_post.image.url }}" alt="">
+      </a>
+    </div>
+
+    <div class="action-button">
+      <div class="interaction-button">
+        <a href="/like_post?post_id={{ saved_post.original_post.id }}" class="ico" id="likeButton">
+          <span><i class="uil uil-thumbs-up"></i></span>
+        </a>
+        <a href="" class="ico"><span><i class="uil uil-comment"></i></span></a>
+        <a href="" class="ico"><span><i class="uil uil-share"></i></span></a>
+      </div>
+      <div class="bookmark">
+        <a href="{% url 'save_post' saved_post.original_post.id %}">
+            {% if saved_post in saved_posts %}
+                <span><i class="uil uil-bookmark-full" style="color: brown;"></i></span>
+            {% else %}
+                <span><i class="uil uil-bookmark"></i></span>
+            {% endif %}
+        </a>
+      </div>
+    </div>
+
+    <div class="liked-by">
+      {% if saved_post.original_post.no_of_likes == 0 %}
+      <p><b>No likes</b></p>
+      {% elif saved_post.original_post.no_of_likes == 1 %}
+      <p><b>liked by {{ saved_post.original_post.no_of_likes }} person</b></p>
+      {% else %}
+      <p><b>liked by {{ saved_post.original_post.no_of_likes }} people</b></p>
+      {% endif %}
+    </div><br>
+
+    <div class="caption">
+      <p><b>{{ saved_post.original_post.user }}</b>{{ saved_post.original_post.caption|linebreaks }}</p>
+    </div>
+    <div class="comments text-muted"></div>
+
+  </div>
+</div>
+{% empty %}
+    <p>No saved posts yet.</p>
+
+{% endfor %}
+
+
+{% endblock %}

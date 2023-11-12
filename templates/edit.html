@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="stylesheet" href="{% static 'style/update.css' %}">
+</head>
+<body>
+    <h3>@{{user.username}} Update your Profile</h3>
+    <a href="{% url 'index' %}" class="home"><button><span><i class="uil uil-home"></i>Home</button></a>
+<div class="container">
+<form class="signup-form" method="post" enctype="multipart/form-data" action="edit_profile"> 
+    {% csrf_token %}                     
+    <label for="" class="pic"> Profile Image</label><br>
+    <img width="100" height="100"  src="{{user_profile.profileimg.url}}" /><br><br>
+    <input type="file" name="image" value="" class="shadow-none bg-gray-100"><br><br><br>
+    <label for="about">Bio</label> <br>
+    <textarea id="about" name="bio" rows="5">{{user_profile.bio}}</textarea><br><br>
+    <label for=""> Location</label><br>
+    <input type="text" name="location" value="{{user_profile.location}}"><br><br>
+    <a href="{% url 'profile_page' %}"><button type="submit" class="save"> Save </button></a>
+</form>
+</div>
+
+<script>
+        //Script for breaking lines in Textarea
+        
+     // JavaScript code to handle the textarea content
+     const myTextarea = document.getElementById('about');
+
+     // Event listener to handle user input (e.g., Enter key)
+     myTextarea.addEventListener('input', () => {
+         formatTextareaContent();
+     });
+
+     function formatTextareaContent() {
+         const text = myTextarea.value;
+         const formattedText = text.replace(/\n/g, '<br>');
+         myTextarea.innerHTML = formattedText;
+     }
+
+</script>
+</body>
+</html>

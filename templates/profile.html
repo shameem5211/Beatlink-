@@ -1,0 +1,115 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block home_active %}{% endblock %}
+
+{% block profile_active %}
+    active
+{% endblock %}
+
+{% block content %}
+<div class="profile_page">
+
+    
+    <h3>@{{user.username}}</h3>
+    <br>
+
+    <div class="up">
+    <div class="lef">
+    <img src="{{user_profile.profileimg.url}}" alt=""></div>
+
+    <div class="info">
+        <div class="counts">
+            <div class="count">
+                <span class="number">{{user_post_length}}</span>
+            </div>
+            <div class="count">
+                <span class="number">{{user_followers}}</span>
+            </div>
+            <div class="count">
+                <span class="number">{{user_following}}</span>
+            </div>
+        </div>
+        <div class="titles">
+            <div class="title">Posts</div>
+            <div class="title" >Followers</div>
+            <div class="title">Following</div>
+        </div>
+    </div>
+</div>
+
+    <h4>{{user.first_name}}</h4>
+    <p>{{user_profile.bio|linebreaks}}</p>
+    <br> 
+    <p>{{user_profile.location}}</p>
+
+    <a href="{% url 'edit_profile' %}"><button class="edit-profile-btn">Edit Profile</button></a>
+</div>
+
+
+{% for post in user_posts reversed %}
+
+            <div class="feeds">
+                <div class="feed">
+                  <div class="head">
+  
+                  </div>
+                  <div class="user">
+                    <div class="profile-pic" id="set">
+                        <a href=""><img id="prof" src="{{user_profile.profileimg.url}}" alt=""></a>
+                    </div>
+                    <div class="info">
+                        <h3>{{post.user}}</h3>
+                        <small>{{post.created_at}}</small>
+                    </div >
+                    <SPAN class="edit"><i class="uil uil-ellipsis-h"></i></SPAN>
+                </div>
+  
+                <div class="photo">
+                  <a href="{{post.image.url}}">
+                    <img src="{{post.image.url}}" alt=""></a>
+                </div>
+  
+                <div class="action-button">
+                    <div class="interaction-button">
+                      
+                        <a href="/like_post?post_id={{post.id}}" class="ico" id="likeButton" >
+                              <span ><i class="uil uil-thumbs-up" ></i></span>
+                          </a>
+                          
+                        <a href="" class="ico"><span><i class="uil uil-comment"></i></span></a>
+                        <a href="" class="ico"><span><i class="uil uil-share"></i></span></a>
+                    </div>
+                    <div class="bookmark">
+                        <a href="" class="ico like-btn"><span><i class="uil uil-bookmark"></i></span></a>
+                    </div>
+                </div>
+  
+                <div class="liked-by">
+                  {% if post.no_of_likes == 0 %}
+                    <p><b>No likes</b></p>
+                    {% elif post.no_of_likes == 1 %}
+                    <p><b>liked by {{post.no_of_likes}} person</b></p>
+                    {% else %}
+                    <p><b>liked by {{post.no_of_likes}} people</b></p>
+                    {% endif %}
+                </div><br>
+  
+                <div class="caption">
+                    <p><b>{{post.user}}</b>{{post.caption|linebreaks}}</p>
+                </div>
+                <div class="comments text-muted"></div>
+                  
+                </div>
+              </div>
+
+            {% endfor %}
+
+{% endblock %}
+
+
+
+    
+
+

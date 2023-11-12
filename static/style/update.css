@@ -1,0 +1,79 @@
+:root{
+    --border-radius: 2rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --search-padding: 0.6rem 1rem;
+    --card-padding: 1rem;
+    --color-white: hsl(252, 30%, 100%);
+    --color-gray: hsl(252, 15%, 65%);
+    --color-light:hsl(252, 30%, 90%);
+    --color-dark: hsl(252, 30%, 17%);
+    --color-primary: #157eab;
+    --color-success: hsl(120, 95%, 60%);
+    --color-danger: hsl(0, 95%, 65%);
+    --color-black: hsl(252, 30%, 10%);
+    --sticky-top-left: 5.4rem;
+    --sticky-top-right: -18rem;
+}
+
+body{
+        font-family: 'Poppins', sans-serif;
+        color: var(--color-dark);
+        background: var(--color-light);
+        overflow-x: hidden;
+}
+h3{
+    color: var(--color-dark);
+    text-align: center;
+    font-weight: lighter;
+}
+button{
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    margin-top: 10px;
+    border-color: #157eab;
+}
+button:hover{
+    background-color: #3498db;
+    cursor: pointer;
+}
+.home{
+    margin-left: 45%;
+}
+.container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+}
+.signup-form {
+    max-width: 250px;
+    padding: 20px;
+    border: 1px solid var(--color-dark);
+    border-radius: var(--border-radius);
+    background-color: var(--color-white);
+    margin-bottom: 70px;
+  }
+.save{
+    margin-left: 80px;
+  }
+input{
+    margin-left: 30px;
+}
+label{
+    margin-left: 30px;
+}
+textarea{
+    margin-left: 30px;
+}
+img{
+    margin-left: 65px;
+}
+.pic{
+    margin-left: 65px;
+}

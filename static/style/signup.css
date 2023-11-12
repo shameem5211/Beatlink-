@@ -1,0 +1,114 @@
+body{
+    background-color: hsl(252, 30%, 90%);
+}
+.container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+.signup-form {
+        max-width: 300px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+      }
+      
+.signup-form h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      
+.signup-form input {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      
+.signup-form button {
+        width: 45%;
+        padding: 10px;
+        background-color: #3897f0;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left:70px ;
+      }
+      
+.signup-form p {
+        text-align: center;
+        margin-top: 10px;
+      }
+      
+.signup-form a {
+        color: #01274a;
+        text-decoration: none;
+      }
+      
+.show{
+    display: flex;
+    align-items: center;
+    
+}
+label{
+    margin-left: 70px;
+    margin-bottom: 9px;
+    color: rgb(107, 106, 106);
+}
+.show input{
+    margin-right: 100px;
+}
+#password-strength{
+  margin-right: 70px
+}
+
+/* Add the following CSS code after the existing CSS code */
+
+/* @media (max-width: 768px) {
+  .container {
+    height: auto;
+  }
+
+  .signup-form {
+    max-width: 70%;
+    margin: 0 auto;
+  }
+
+  .signup-form input,
+  .signup-form button {
+    width: 80%;
+  }
+
+  .signup-form button {
+    margin-left: 0;
+  }
+    .signup-form input,
+  .signup-form button {
+    width: 70%;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .signup-form {
+    padding: 10px;
+  }
+  .signup-form input,
+  .signup-form button {
+    width: 40%;
+  }
+  
+
+}
+
+@media (max-width: 320px) {
+  .signup-form {
+    max-width: 60%;
+  }
+}
+ */

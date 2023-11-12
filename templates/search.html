@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'style/index.css' %}" />
+</head>
+<style>
+    
+.res{
+    margin-top: 140px;
+    margin-left: 30px;
+}
+
+.conts {
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 70%;
+    height: 110px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.image-link {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 35px; /* Add space here */
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.det {
+    flex: 1;
+}
+
+.search-result-item-heading a {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+.info,
+.description {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+.vuser{
+    margin-right: 30px
+}
+
+
+</style>
+<body>
+    <nav>
+        <div class="container">
+            <h2 class="logo">BeatLink</h2>
+            <div class="search-bar">
+                <form action="/search" method="post">
+                    {% csrf_token %}
+                <input type="search" name="username" placeholder="Search for user">
+                <button class="find" type="submit"><i class="uil uil-search"></i></button></form>
+                
+            </div>
+            <div class="create">
+                <a href="{% url 'index' %}"><label class="btn btn-primary" for="create-post">Home</label></a>
+                <div class="profile-pic">
+                    <a href="{% url 'profile_page' %}"> <img src="{{user_profile.profileimg.url}}"   id="profile" /></a>
+     </div>
+    </div>
+</div>
+    </nav>
+    <div class="container">
+    <div class="middle">
+        <h4 class="res">Results for</h4>
+        {% for users in username_profile_list %}
+        <div class="conts">
+            <a class="image-link" ><img class="image" src="{{users.profileimg.url}}">
+            </a>
+            <div class="det">
+                <h4 class="search-result-item-heading"><a >@{{users.user}}</a></h4>
+                                        <p class="info" style="color: grey;">{{users.location}}</p>
+                                        <p class="description">{{users.bio|linebreaks}}</p>
+            </div>
+            <a href="/profile/{{users.user}}" class="vuser"><label class="btn btn-primary" for="create-post">View Profile</label></a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
